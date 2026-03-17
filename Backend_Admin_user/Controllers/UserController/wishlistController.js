@@ -14,7 +14,7 @@ const  addToWishlist = asyncHandler(
             product : productId
         });
         if(exists){
-            throw new Apierror("Product alreday add Wishlist")
+            throw new ApiError("Product alreday add Wishlist")
         }
         const wishlist = await Wishlist.create({
             user :userId ,
@@ -24,6 +24,25 @@ const  addToWishlist = asyncHandler(
     } catch{
     throw new ApiError("Product not found" ,500 )
     }
+})
 
+const getWishlist = asyncHandler(
+   
+    async(req,res) =>{
+         try{
+         const userId = req.user.id;
 
+  const wishlist = await Wishlist.find({ user: userId })
+    .populate("product");
+
+     res.json(wishlist); 
+    } 
+  catch{
+    throw new ApiError(" Product not  get  allow " ,500)
+}
     })
+
+
+module.exports ={
+    
+}
