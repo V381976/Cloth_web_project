@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchwomenCloth } from "../reduxStore/AllFeatureSlice/ProductSlice";
 import ProductCard from "../components/productCard";
@@ -7,6 +8,7 @@ import ProductSkeletion from "../components/ProductSkeletion";
 function WomenCloth() {
 
   const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
   const {items , status} = useSelector((state) => state.products);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -26,6 +28,17 @@ function WomenCloth() {
     }));
 
   }, [dispatch,page , search, sort, category, priceRange]);
+
+  useEffect(() => {
+   setSearchParams({
+    search,
+    sort,
+    category,
+    priceRange,
+    page
+  });
+
+}, [search, sort, category, priceRange, page]);
 
   return (
 

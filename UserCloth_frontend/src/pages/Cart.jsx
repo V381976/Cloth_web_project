@@ -98,36 +98,37 @@ function Cart() {
 
             {/* Quantity */}
 
-            <div className="flex items-center gap-2">
+         <div className="flex items-center gap-2">
 
-              <button
-                onClick={() =>
-                  dispatch(updateCartQty({
-                    id: item._id,
-                    quantity: item.quantity - 1
-                  }))
-                }
-                className="px-2 bg-gray-300 rounded"
-              >
-                -
-              </button>
+  <button
+    onClick={() => {
+      if (item.quantity > 1) {
+        dispatch(updateCartQty({
+          id: item._id,
+          quantity: item.quantity - 1
+        }))
+      }
+    }}
+    className="px-2 bg-gray-300 rounded"
+  >
+    -
+  </button>
 
-              <span>{item.quantity}</span>
+  <span>{item.quantity}</span>
 
-              <button
-                onClick={() =>
-                  dispatch(updateCartQty({
-                    id: item._id,
-                    quantity: item.quantity + 1
-                  }))
-                }
-                className="px-2 bg-gray-300 rounded"
-              >
-                +
-              </button>
+  <button
+    onClick={() =>
+      dispatch(updateCartQty({
+        id: item._id,
+        quantity: item.quantity + 1
+      }))
+    }
+    className="px-2 bg-gray-300 rounded"
+  >
+    +
+  </button>
 
-            </div>
-
+</div>
             {/* Remove */}
 
             <button

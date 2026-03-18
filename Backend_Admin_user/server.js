@@ -21,15 +21,15 @@ app.use(cors({
 const UserAuthRoute = require("./routers/UserRoute/AuthRoute")
 const productRoutes = require("./routers/UserRoute/ProductRoute");
 const CartRoutes = require("./routers/UserRoute/CartRoute");
-const CategoryRoute = require("./routers/UserRoute/CategoryRoute")
-
+const CategoryRoute = require("./routers/UserRoute/CategoryRoute");
+const wishRoutes = require("./routers/UserRoute/WishlistRoute");
 app.use("/uploads/Clothimages", express.static("uploads/Clothimages"));
 
 app.use("/api" , productRoutes ) ;
 app.use("/api/auth" , UserAuthRoute );
 app.use("/api/cart" , CartRoutes );
 app.use("/api/category", CategoryRoute );
-
+app.use("/api/wish" ,wishRoutes);
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {
   console.log(`Server Running on Port ${process.env.PORT}`);

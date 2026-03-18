@@ -14,6 +14,7 @@ import Cart from './pages/Cart';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux"; 
 import { getCurrentUser } from "./reduxStore/AllFeatureSlice/AuthSlice"
+import Wishlist from './pages/WishList';
 function App() {
  const dispatch = useDispatch();
 
@@ -47,7 +48,13 @@ useEffect(() => {
         <ProtectRoute> 
           <Cart/>
          </ProtectRoute>} /> 
+             <Route path="/wishlist" element ={
+              <ProtectRoute> 
+          <Wishlist/>
+         </ProtectRoute>
+             }/>
     </Routes>
+
 
   <Footer/>
   </div>

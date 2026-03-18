@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../reduxStore/AllFeatureSlice/AuthSlice";
-
+import { FaHeart } from "react-icons/fa";
 function Navbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +17,7 @@ function Navbar() {
   // Redux state
   const cartItems = useSelector((state) => state.cart.cartItems);
   const { user } = useSelector((state) => state.auth);
-
+  const { items } = useSelector((state) => state.wishlist);
   const handleLogout = async () => {
 
     await dispatch(LogoutUser());
@@ -53,13 +53,28 @@ function Navbar() {
           <Link to="/women">Women</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
-
+          
         </div>
 
 
         {/* Right Side */}
 
         <div className="flex items-center gap-6">
+          <Link to="/wishlist" className="relative">
+
+  <FaHeart className="text-xl cursor-pointer text-red-500" />
+
+  {items?.length > 0 && (
+
+    <span className="absolute -top-2 -right-2 bg-red-500 text-xs px-1 rounded-full">
+
+      {items.length}
+
+    </span>
+
+  )}
+
+</Link>
 
           {/* Cart */}
 
